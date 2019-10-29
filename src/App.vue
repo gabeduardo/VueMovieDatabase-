@@ -4,20 +4,20 @@
       <el-header>Header</el-header>
       <el-container>
         <el-aside width="200px">
-          <el-menu :default-openeds="['1', '3']">
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-message"></i>Navigator One
-              </template>
-              <el-menu-item-group>
-                <template slot="title">Group 1</template>
-                <el-menu-item index="1-1">Option 1</el-menu-item>
-                <el-menu-item index="1-2">Option 2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="Group 2">
-                <el-menu-item index="1-3">Option 3</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
+          <el-menu>
+            <el-menu-item-group>
+              <el-menu-item index="1-1">
+                <router-link to="/home">
+                  <i class="el-icon-s-home"></i>Home
+                </router-link>
+              </el-menu-item>
+
+              <el-menu-item index="1-2">
+                <router-link to="/contact">
+                  <i class="el-icon-receiving"></i> Contact
+                </router-link>
+              </el-menu-item>
+            </el-menu-item-group>
           </el-menu>
         </el-aside>
         <el-container>
