@@ -17,6 +17,12 @@
                   <i class="el-icon-receiving"></i> Contact
                 </router-link>
               </el-menu-item>
+
+              <el-menu-item index="1-2">
+                <router-link to="/movies/add">
+                  <i class="el-icon-circle-plus-outline"></i> Add Movie
+                </router-link>
+              </el-menu-item>
             </el-menu-item-group>
           </el-menu>
         </el-aside>
