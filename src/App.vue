@@ -3,9 +3,27 @@
     <el-container>
       <el-header>Header</el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px">
+          <el-menu :default-openeds="['1', '3']">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-message"></i>Navigator One
+              </template>
+              <el-menu-item-group>
+                <template slot="title">Group 1</template>
+                <el-menu-item index="1-1">Option 1</el-menu-item>
+                <el-menu-item index="1-2">Option 2</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="Group 2">
+                <el-menu-item index="1-3">Option 3</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
         <el-container>
-          <el-main>Main</el-main>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -14,6 +32,8 @@
 </template>
 
 <script>
+// importando la carpeta de estilos ppal
+import "./assets/stylesheets/main.css";
 export default {
   name: "app",
   components: {}
@@ -21,38 +41,4 @@ export default {
 </script>
 
 <style>
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
-}
 </style>
