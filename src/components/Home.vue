@@ -1,65 +1,52 @@
 <template>
   <el-row :gutter="10">
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>Star Wars</span>
-            <el-button style="float: right; padding: 3px 0" type="text">Rate this movie</el-button>
-          </div>
-          <div class="text item">
-            Luke Skywalker's peaceful and solitary existence gets upended
-            when he encounters Rey, a young woman who shows strong signs of the Force.
-            Her desire to learn the ways of the Jedi forces Luke to make a decision
-            that changes their lives forever. Meanwhile, Kylo Ren and General Hux lead
-            the First Order in an all-out assault against Leia and the Resistance for
-            supremacy of the galaxy.
-          </div>
-        </el-card>
-      </div>
-    </el-col>
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>Revenant</span>
-            <el-button style="float: right; padding: 3px 0" type="text">Rate this movie</el-button>
-          </div>
-          <div class="text item">
-            While exploring the uncharted wilderness in 1823, frontiersman
-            Hugh Glass (Leonardo DiCaprio) sustains life-threatening injuries from a
-            brutal bear attack. When a member (Tom Hardy) of his hunting team kills his
-            young son (Forrest Goodluck) and leaves him for dead, Glass must utilize
-            his survival skills to find a way back to civilization. Grief-stricken and
-            fueled by vengeance, the legendary fur trapper treks through the snowy
-            terrain to track down the man who betrayed him.
-          </div>
-        </el-card>
-      </div>
-    </el-col>
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>Pepega name</span>
-            <el-button style="float: right; padding: 3px 0" type="text">Rate this movie</el-button>
-          </div>
-          <div class="text item">
-            In the near future, a weary Logan (Hugh Jackman) cares for an
-            ailing Professor X (Patrick Stewart) at a remote outpost on the Mexican
-            border. His plan to hide from the outside world gets upended when he meets
-            a young mutant (Dafne Keen) who is very much like him. Logan must now
-            protect the girl and battle the dark forces that want to capture her
-          </div>
-        </el-card>
-      </div>
-    </el-col>
+    <div v-for="movie in movies" :key="movie._id" class="text item">
+      <el-col :span="8">
+        <div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <router-link :to="{ name: 'Movie', params: { id: movie._id }}">
+                <h4>{{movie.name}}</h4>
+              </router-link>
+
+              <el-button style="float: right; padding: 3px 0" type="text">Rate this movie</el-button>
+            </div>
+            <div class="text item">{{movie.description}}</div>
+            <div class="bottom clearfix">
+              Release year
+              <span>{{movie.release_year}}</span>
+            </div>
+          </el-card>
+        </div>
+      </el-col>
+    </div>
   </el-row>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: "Home"
+  name: "Movies",
+  data() {
+    return {
+      movies: []
+    };
+  },
+  mounted() {
+    this.fetchMovies();
+  },
+  methods: {
+    async fetchMovies() {
+      return axios({
+        method: "get",
+        url: "http://localhost:8081/movies"
+      })
+        .then(response => {
+          this.movies = response.data.movies;
+        })
+        .catch(() => {});
+    }
+  }
 };
 </script>
 
