@@ -40,7 +40,11 @@ export default {
         }
       })
         .then(() => {
-          this.$swal(`Thank you for rating! ${this.value} stars`, "success");
+          this.$swal(
+            "Great!",
+            `Thank you for rating! ${this.value} stars`,
+            "success"
+          );
         })
         .catch(error => {
           const message = error.response.data.message;
