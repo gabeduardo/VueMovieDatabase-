@@ -11,9 +11,13 @@ app.use(bodyParser.json());
 app.use(cors());
 //connect to mongodb
 mongoose
-  .connect("mongodb://localhost/movie_rating_app", function() {
-    console.log("Connection has been made");
-  })
+  .connect(
+    "mongodb://localhost/movie_rating_app",
+    { useNewUrlParser: true },
+    function() {
+      console.log("Connection has been made");
+    }
+  )
   .catch(err => {
     console.error("App starting error:", err.stack);
     process.exit(1);
